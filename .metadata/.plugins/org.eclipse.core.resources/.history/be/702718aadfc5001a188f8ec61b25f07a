@@ -1,0 +1,14 @@
+package com.banking.service.authorizationserver;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import com.banking.service.common.JWTAuthenticationConfig;
+
+@EnableWebSecurity
+public class AuthSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired 
+	private JWTAuthenticationConfig config;
+}

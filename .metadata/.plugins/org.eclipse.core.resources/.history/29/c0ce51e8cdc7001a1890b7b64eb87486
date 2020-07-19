@@ -1,0 +1,2 @@
+insert into bankuser (id, username, password, role)
+values (1, "arnold", "Rapid2020", "USER");

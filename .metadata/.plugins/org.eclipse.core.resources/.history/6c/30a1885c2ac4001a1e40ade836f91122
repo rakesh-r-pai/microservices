@@ -1,0 +1,77 @@
+package com.banking.external.externalaccountmanagementservice.service;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyLong;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.banking.external.externalaccountmanagementservice.dao.ExternalAccountRepository;
+import com.banking.external.externalaccountmanagementservice.dao.entity.BeneficiaryAccount;
+import com.banking.external.externalaccountmanagementservice.service.dto.BeneficiaryResponseDTO;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest
+public class ExternalAccountServiceTest {
+
+	@InjectMocks
+	private ExternalAccountService service;
+
+	@Mock
+	private ExternalAccountRepository repository;
+
+	@BeforeEach
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
+	}
+
+	@Test
+	public void testFetchBeneficiaries() {
+		List<BeneficiaryAccount> beneficiaries = populateBeneficiaries();
+		Mockito.when(repository.findAll()).thenReturn(beneficiaries);
+		BeneficiaryResponseDTO responseDTO = service.fetchBeneficiaries();
+		assertNotNull(responseDTO);
+		assertNotNull(responseDTO.getBeneficiaries());
+		assertFalse(responseDTO.getBeneficiaries().isEmpty());
+		assertEquals("2020101020", responseDTO.getBeneficiaries().get(0).getAccountNumber());
+		assertEquals("RST Bank", responseDTO.getBeneficiaries().get(0).getBankName());
+		assertEquals("Sommerset", responseDTO.getBeneficiaries().get(0).getBeneficiaryName());
+		assertEquals("Sunny", responseDTO.getBeneficiaries().get(0).getBeneficiaryNickName());
+		assertEquals("RST01", responseDTO.getBeneficiaries().get(0).getBranchCode());
+		assertEquals("1", responseDTO.getBeneficiaries().get(0).getId().toString());
+	}
+	
+	@Test
+	public void testFetchBeneficiaryById() {
+		Optional<BeneficiaryAccount> beneficiaryOptional ;
+		Mockito.when(repository.findById(anyLong()).thenReturn(beneficiaryOptional);
+		service.fetchBeneficiaryById(1L);
+	}
+
+	private List<BeneficiaryAccount> populateBeneficiaries() {
+		List<BeneficiaryAccount> beneficiaries = new ArrayList<>();
+		BeneficiaryAccount beneficiaryAccount = new BeneficiaryAccount();
+		beneficiaryAccount.setAccountNumber("2020101020");
+		beneficiaryAccount.setBankName("RST Bank");
+		beneficiaryAccount.setBeneficiaryName("Sommerset");
+		beneficiaryAccount.setBeneficiaryNickName("Sunny");
+		beneficiaryAccount.setBranchCode("RST01");
+		beneficiaryAccount.setId(1L);
+		beneficiaries.add(beneficiaryAccount);
+		return beneficiaries;
+	}
+
+}

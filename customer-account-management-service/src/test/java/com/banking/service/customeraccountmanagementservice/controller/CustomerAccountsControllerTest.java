@@ -1,0 +1,88 @@
+package com.banking.service.customeraccountmanagementservice.controller;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.banking.service.customeraccountmanagementservice.model.CustomerAccountResponseModel;
+import com.banking.service.customeraccountmanagementservice.model.ExternalAccountBean;
+import com.banking.service.customeraccountmanagementservice.model.InternalAccountBean;
+import com.banking.service.customeraccountmanagementservice.service.ExternalAccountServiceProxy;
+import com.banking.service.customeraccountmanagementservice.service.InternalAccountServiceProxy;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest
+public class CustomerAccountsControllerTest {
+
+	@InjectMocks
+	private CustomerAccountsController controller;
+
+	@Mock
+	private InternalAccountServiceProxy internalProxy;
+
+	@Mock
+	private ExternalAccountServiceProxy externalProxy;
+
+	@BeforeEach
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
+	}
+
+	@Test
+	public void testFetchAccounts() {
+		InternalAccountBean internalAccount = populateInternalAccount();
+		List<ExternalAccountBean> externalAccounts = populateExternalAccounts();
+		Mockito.when(internalProxy.fetchAccountDetails()).thenReturn(internalAccount);
+		Mockito.when(externalProxy.fetchBeneficiaries()).thenReturn(externalAccounts);
+		CustomerAccountResponseModel customeraccounts = controller.fetchAccounts();
+		assertNotNull(customeraccounts);
+		assertNotNull(customeraccounts.getInternalAccount());
+		assertEquals(new BigDecimal(5500.00), customeraccounts.getInternalAccount().getAccountBalance());
+		assertEquals("2020303010", customeraccounts.getInternalAccount().getAccountNumber());
+		assertEquals("XYC Bank", customeraccounts.getInternalAccount().getBankName());
+		assertNotNull(customeraccounts.getExternalAccounts());
+		assertFalse(customeraccounts.getExternalAccounts().isEmpty());
+		assertNotNull(customeraccounts.getExternalAccounts().get(0));
+		assertEquals("1010202030", customeraccounts.getExternalAccounts().get(0).getAccountNumber());
+		assertEquals("ABC Bank", customeraccounts.getExternalAccounts().get(0).getBankName());
+		assertEquals("Raplphestine", customeraccounts.getExternalAccounts().get(0).getBeneficiaryName());
+		assertEquals("Ralph", customeraccounts.getExternalAccounts().get(0).getBeneficiaryNickName());
+		assertEquals("ABC01", customeraccounts.getExternalAccounts().get(0).getBranchCode());
+		assertEquals("2", customeraccounts.getExternalAccounts().get(0).getId().toString());
+	}
+
+	private List<ExternalAccountBean> populateExternalAccounts() {
+		List<ExternalAccountBean> extAccounts = new ArrayList<>();
+		ExternalAccountBean externalAccountBean = new ExternalAccountBean();
+		externalAccountBean.setAccountNumber("1010202030");
+		externalAccountBean.setBankName("ABC Bank");
+		externalAccountBean.setBeneficiaryName("Raplphestine");
+		externalAccountBean.setBeneficiaryNickName("Ralph");
+		externalAccountBean.setBranchCode("ABC01");
+		externalAccountBean.setId(2L);
+		extAccounts.add(externalAccountBean);
+		return extAccounts;
+	}
+
+	private InternalAccountBean populateInternalAccount() {
+		InternalAccountBean internalBean = new InternalAccountBean();
+		internalBean.setAccountBalance(new BigDecimal(5500.00));
+		internalBean.setAccountNumber("2020303010");
+		internalBean.setBankName("XYC Bank");
+		return internalBean;
+	}
+}

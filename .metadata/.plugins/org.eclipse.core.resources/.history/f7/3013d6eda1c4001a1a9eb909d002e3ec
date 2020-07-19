@@ -1,0 +1,5 @@
+package com.banking.internal.internalaccountmanagementservice.controller;
+
+public class InternalAccountControllerTest {
+
+}

@@ -1,0 +1,5 @@
+package com.banking.service.authorizationserver.dao;
+
+public class BankUserRepository {
+
+}

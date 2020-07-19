@@ -1,0 +1,5 @@
+package com.banking.service.common;
+
+public class JWTTokenAuthenticationFilter {
+
+}

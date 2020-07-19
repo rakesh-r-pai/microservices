@@ -1,0 +1,49 @@
+package com.banking.external.externalaccountmanagementservice.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.banking.external.externalaccountmanagementservice.service.ExternalAccountService;
+import com.banking.external.externalaccountmanagementservice.service.dto.BeneficiaryDTO;
+import com.banking.external.externalaccountmanagementservice.service.dto.BeneficiaryResponseDTO;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest
+public class ExternalAccountControllerTest {
+	
+	@InjectMocks
+	private ExternalAccountController controller;
+	
+	@Mock
+	private ExternalAccountService service;
+	
+	@Test
+	public void testFetchBeneficiaries() {
+		BeneficiaryResponseDTO responseDTO = populateResponseDTO();
+		Mockito.when(service.fetchBeneficiaries()).thenReturn(responseDTO);
+	}
+
+	private BeneficiaryResponseDTO populateResponseDTO() {
+		BeneficiaryResponseDTO  beneficiaryResponseDTO = new BeneficiaryResponseDTO();
+		List<BeneficiaryDTO> beneficiaries = new ArrayList<>();
+		BeneficiaryDTO beneficiaryDTO = new BeneficiaryDTO();
+		beneficiaryDTO.setAccountNumber("2020101020");
+		beneficiaryDTO.setBankName("RST Bank");
+		beneficiaryDTO.setBeneficiaryName("Sommerset");
+		beneficiaryDTO.setBeneficiaryNickName("Sunny");
+		beneficiaryDTO.setBranchCode("RST01");
+		beneficiaryDTO.setId(1L);
+		beneficiaries.add(beneficiaryDTO);
+		beneficiaryResponseDTO.setBeneficiaries(beneficiaries);
+		return beneficiaryResponseDTO;
+	}
+
+}

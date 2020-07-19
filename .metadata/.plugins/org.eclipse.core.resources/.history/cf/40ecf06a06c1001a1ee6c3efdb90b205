@@ -1,0 +1,25 @@
+package com.banking.service.customeraccountmanagementservice.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.banking.service.customeraccountmanagementservice.model.CustomerAccountResponseModel;
+import com.banking.service.customeraccountmanagementservice.model.InternalAccountBean;
+import com.banking.service.customeraccountmanagementservice.service.InternalAccountServiceProxy;
+
+@RestController
+@RequestMapping(value="/customer")
+public class CustomerAccountsController {
+	
+	@Autowired
+	private InternalAccountServiceProxy internalProxy;
+
+	@GetMapping("/accounts")
+	public void fetchAccounts() {
+		CustomerAccountResponseModel responseModel = new CustomerAccountResponseModel();
+		InternalAccountBean internalAccount = internalProxy.fetchAccountDetails();
+		responseModel.setInternalAccount(internalAccount);
+	}
+}

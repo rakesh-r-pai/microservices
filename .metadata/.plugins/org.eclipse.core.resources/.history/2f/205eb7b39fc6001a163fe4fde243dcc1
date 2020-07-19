@@ -1,0 +1,4 @@
+spring.application.name=authorization-server
+server.port=8081
+
+bank.security.jwt.secret=secretpassword

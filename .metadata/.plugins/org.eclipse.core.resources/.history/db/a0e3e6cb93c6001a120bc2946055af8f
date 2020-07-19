@@ -1,0 +1,64 @@
+package com.banking.internal.internalaccountmanagementservice.controller;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.math.BigDecimal;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.banking.internal.internalaccountmanagementservice.model.AccountBean;
+import com.banking.internal.internalaccountmanagementservice.service.InternalAccountService;
+import com.banking.internal.internalaccountmanagementservice.service.dto.InternalAccountServiceResponseDTO;
+
+@RunWith(MockitoJUnitRunner.class)
+//@PrepareForTest
+public class InternalAccountControllerTest {
+
+	@InjectMocks
+	private InternalAccountController controller;
+
+	@Mock
+	private InternalAccountService service;
+
+	@BeforeEach
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
+	}
+
+	@Test
+	public void testFetchAccountDetails() {
+		InternalAccountServiceResponseDTO internalAccountServiceResponseDTO = populateAccountDetails();
+		Mockito.when(service.fetchAccountDetails()).thenReturn(internalAccountServiceResponseDTO);
+		AccountBean account = controller.fetchAccountDetails();
+		assertNotNull(account);
+		assertEquals(new BigDecimal(5500.00), account.getAccountBalance());
+		assertEquals("2020XXXXXX", account.getAccountNumber());
+		assertEquals("XYC Bank", account.getBankName());
+	}
+
+	@Test
+	public void testFetchDefault() {
+		AccountBean account = controller.fetchDefault();
+		assertNotNull(account);
+		assertNull(account.getAccountBalance());
+		assertNull(account.getAccountNumber());
+		assertNull(account.getBankName());
+	}
+
+	private InternalAccountServiceResponseDTO populateAccountDetails() {
+		InternalAccountServiceResponseDTO internalAccountServiceResponseDTO = new InternalAccountServiceResponseDTO();
+		internalAccountServiceResponseDTO.setAccountBalance(new BigDecimal(5500.00));
+		internalAccountServiceResponseDTO.setAccountNumber("2020303010");
+		internalAccountServiceResponseDTO.setBankName("XYC Bank");
+		return internalAccountServiceResponseDTO;
+	}
+}

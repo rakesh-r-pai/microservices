@@ -1,0 +1,2 @@
+insert into bank_user (id, username, password, role)
+values (1, 'captain', 'Rapid2020', 'USER');

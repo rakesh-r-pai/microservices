@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name=" org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="junit"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="authenticationManager" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="AuthenticationManager"/>
+			<item value="authenticationManager"/>
+			<item value="packaging"/>
+			<item value="nonNull"/>
+			<item value="raj"/>
+			<item value="Objects"/>
+			<item value="responseDTO.getBeneficiaries().get(0)"/>
+			<item value="anyLong"/>
+		</list>
+		<list key="replacehistory">
+			<item value="bank"/>
+			<item value="beneficiaryDTO"/>
+		</list>
+	</section>
+</section>

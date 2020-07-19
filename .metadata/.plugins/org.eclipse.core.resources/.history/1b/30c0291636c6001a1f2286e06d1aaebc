@@ -1,0 +1,5 @@
+package com.banking.service.zuulapigatewayserver;
+
+public class ZuulSecurityConfig {
+
+}

@@ -1,0 +1,55 @@
+08-07-2020 23:45:31.902 [main] INFO  o.s.c.c.c.ConfigServicePropertySourceLocator.getRemoteEnvironment - Fetching config from server at : http://localhost:8888
+08-07-2020 23:45:33.480 [main] INFO  o.s.c.c.c.ConfigServicePropertySourceLocator.getRemoteEnvironment - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+08-07-2020 23:45:33.484 [main] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator.locate - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/internal-account-management-service/default": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+08-07-2020 23:45:33.484 [main] INFO  c.b.i.i.InternalAccountManagementServiceApplication.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+08-07-2020 23:45:35.605 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+08-07-2020 23:45:36.511 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 878ms. Found 1 JPA repository interfaces.
+08-07-2020 23:45:37.418 [main] INFO  o.s.cloud.context.scope.GenericScope.setSerializationId - BeanFactory id=6af26160-7302-3eaa-bfa4-7ff41ca0ff9d
+08-07-2020 23:45:39.699 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8000 (http)
+08-07-2020 23:45:39.730 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+08-07-2020 23:45:39.730 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/9.0.36]
+08-07-2020 23:45:40.074 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+08-07-2020 23:45:40.074 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 6516 ms
+08-07-2020 23:45:40.293 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+08-07-2020 23:45:41.058 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+08-07-2020 23:45:41.105 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration.lambda$h2Console$0 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:5b1ab637-f1ab-4022-83f3-82fcc2c563d9'
+08-07-2020 23:45:41.605 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor.initialize - Initializing ExecutorService 'applicationTaskExecutor'
+08-07-2020 23:45:42.027 [task-1] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+08-07-2020 23:45:42.230 [main] WARN  c.n.c.sources.URLConfigurationSource.<init> - No URLs will be polled as dynamic configuration sources.
+08-07-2020 23:45:42.252 [main] INFO  c.n.c.sources.URLConfigurationSource.<init> - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+08-07-2020 23:45:42.277 [main] WARN  c.n.c.sources.URLConfigurationSource.<init> - No URLs will be polled as dynamic configuration sources.
+08-07-2020 23:45:42.277 [main] INFO  c.n.c.sources.URLConfigurationSource.<init> - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+08-07-2020 23:45:42.636 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+08-07-2020 23:45:42.683 [task-1] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 5.4.17.Final
+08-07-2020 23:45:44.277 [task-1] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+08-07-2020 23:45:44.871 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger.logWarning - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+08-07-2020 23:45:45.261 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory.create - Setting initial instance status as: STARTING
+08-07-2020 23:45:45.652 [main] INFO  c.netflix.discovery.DiscoveryClient.<init> - Initializing Eureka in region us-east-1
+08-07-2020 23:45:46.433 [main] INFO  c.n.d.p.DiscoveryJerseyProvider.<init> - Using JSON encoding codec LegacyJacksonJson
+08-07-2020 23:45:46.433 [main] INFO  c.n.d.p.DiscoveryJerseyProvider.<init> - Using JSON decoding codec LegacyJacksonJson
+08-07-2020 23:45:46.715 [task-1] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+08-07-2020 23:45:48.074 [main] INFO  c.n.d.p.DiscoveryJerseyProvider.<init> - Using XML encoding codec XStreamXml
+08-07-2020 23:45:48.090 [main] INFO  c.n.d.p.DiscoveryJerseyProvider.<init> - Using XML decoding codec XStreamXml
+08-07-2020 23:45:49.152 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver.getClusterEndpoints - Resolving eureka endpoints via configuration
+08-07-2020 23:45:49.590 [main] INFO  c.netflix.discovery.DiscoveryClient.fetchRegistry - Disable delta property : false
+08-07-2020 23:45:49.590 [main] INFO  c.netflix.discovery.DiscoveryClient.fetchRegistry - Single vip registry refresh property : null
+08-07-2020 23:45:49.605 [main] INFO  c.netflix.discovery.DiscoveryClient.fetchRegistry - Force full registry fetch : false
+08-07-2020 23:45:49.605 [main] INFO  c.netflix.discovery.DiscoveryClient.fetchRegistry - Application is null : false
+08-07-2020 23:45:49.605 [main] INFO  c.netflix.discovery.DiscoveryClient.fetchRegistry - Registered Applications size is zero : true
+08-07-2020 23:45:49.605 [main] INFO  c.netflix.discovery.DiscoveryClient.fetchRegistry - Application version is -1: true
+08-07-2020 23:45:49.605 [main] INFO  c.netflix.discovery.DiscoveryClient.getAndStoreFullRegistry - Getting all instance registry info from the eureka server
+08-07-2020 23:45:50.277 [main] INFO  c.netflix.discovery.DiscoveryClient.getAndStoreFullRegistry - The response status is 200
+08-07-2020 23:45:50.293 [main] INFO  c.netflix.discovery.DiscoveryClient.initScheduledTasks - Starting heartbeat executor: renew interval is: 30
+08-07-2020 23:45:50.308 [main] INFO  c.n.discovery.InstanceInfoReplicator.<init> - InstanceInfoReplicator onDemand update allowed rate per min is 4
+08-07-2020 23:45:50.324 [main] INFO  c.netflix.discovery.DiscoveryClient.<init> - Discovery Client initialized at timestamp 1594277150308 with initial instances count: 1
+08-07-2020 23:45:50.340 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry.register - Registering application INTERNAL-ACCOUNT-MANAGEMENT-SERVICE with eureka with status UP
+08-07-2020 23:45:50.386 [main] INFO  c.netflix.discovery.DiscoveryClient.notify - Saw local status change event StatusChangeEvent [timestamp=1594277150386, current=UP, previous=STARTING]
+08-07-2020 23:45:50.449 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient.register - DiscoveryClient_INTERNAL-ACCOUNT-MANAGEMENT-SERVICE/base-lab:internal-account-management-service:8000: registering service...
+08-07-2020 23:45:50.527 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8000 (http) with context path ''
+08-07-2020 23:45:50.543 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration.onApplicationEvent - Updating port to 8000
+08-07-2020 23:45:50.642 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient.register - DiscoveryClient_INTERNAL-ACCOUNT-MANAGEMENT-SERVICE/base-lab:internal-account-management-service:8000 - registration status: 204
+08-07-2020 23:45:50.642 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener.onApplicationEvent - Triggering deferred initialization of Spring Data repositories…
+08-07-2020 23:45:52.465 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+08-07-2020 23:45:52.496 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+08-07-2020 23:45:53.152 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener.onApplicationEvent - Spring Data repositories initialized!
+08-07-2020 23:45:53.168 [main] INFO  c.b.i.i.InternalAccountManagementServiceApplication.logStarted - Started InternalAccountManagementServiceApplication in 24.959 seconds (JVM running for 26.119)

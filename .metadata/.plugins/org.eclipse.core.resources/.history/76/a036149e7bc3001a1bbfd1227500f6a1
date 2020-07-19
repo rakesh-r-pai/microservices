@@ -1,0 +1,5 @@
+package com.banking.external.externalaccountmanagementservice.controller;
+
+public class ExternalAccountControllerTest {
+
+}

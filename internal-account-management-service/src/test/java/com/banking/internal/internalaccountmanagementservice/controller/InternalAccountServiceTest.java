@@ -1,0 +1,65 @@
+package com.banking.internal.internalaccountmanagementservice.controller;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.banking.internal.internalaccountmanagementservice.dao.InternalAccountRepository;
+import com.banking.internal.internalaccountmanagementservice.dao.entity.Account;
+import com.banking.internal.internalaccountmanagementservice.dao.entity.Bank;
+import com.banking.internal.internalaccountmanagementservice.service.InternalAccountService;
+import com.banking.internal.internalaccountmanagementservice.service.dto.InternalAccountServiceResponseDTO;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest
+public class InternalAccountServiceTest {
+
+	@InjectMocks
+	private InternalAccountService service;
+
+	@Mock
+	private InternalAccountRepository repository;
+
+	@BeforeEach
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
+	}
+
+	@Test
+	public void testFetchAccountDetails() {
+		List<Bank> accounts = populateBankAndAccounts();
+		Mockito.when(repository.findAll()).thenReturn(accounts);
+		InternalAccountServiceResponseDTO internalAccountServiceResponseDTO = service.fetchAccountDetails();
+		assertNotNull(internalAccountServiceResponseDTO);
+		assertEquals("XYC Bank", internalAccountServiceResponseDTO.getBankName());
+		assertEquals("2020303010", internalAccountServiceResponseDTO.getAccountNumber());
+		assertEquals(new BigDecimal(5500.00), internalAccountServiceResponseDTO.getAccountBalance());
+	}
+
+	private List<Bank> populateBankAndAccounts() {
+		List<Bank> accounts = new ArrayList<>();
+		Bank bank = new Bank();
+		bank.setId(1L);
+		bank.setBankName("XYC Bank");
+		Account account = new Account();
+		account.setId(1L);
+		account.setAccountNumber("2020303010");
+		account.setAccountBalance(new BigDecimal(5500.00));
+		bank.setAccount(account);
+		accounts.add(bank);
+		return accounts;
+	}
+}

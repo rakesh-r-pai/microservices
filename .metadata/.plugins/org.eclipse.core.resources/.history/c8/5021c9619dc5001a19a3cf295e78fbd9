@@ -1,0 +1,70 @@
+package com.banking.external.externalaccountmanagementservice.controller.helper;
+
+import static java.util.Objects.nonNull;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.util.StringUtils;
+
+import com.banking.external.externalaccountmanagementservice.model.AccountBean;
+import com.banking.external.externalaccountmanagementservice.service.dto.BeneficiaryDTO;
+import com.banking.external.externalaccountmanagementservice.service.dto.BeneficiaryResponseDTO;
+
+public class ExternalAccountControllerHelper {
+
+	private static final Predicate<BeneficiaryResponseDTO> beneficiaryPredicate = beneficiaries -> (nonNull(
+			beneficiaries) && nonNull(beneficiaries.getBeneficiaries()) && !beneficiaries.getBeneficiaries().isEmpty());
+	
+	public static final Function<BeneficiaryResponseDTO, List<AccountBean>> dtoToModelMapper = beneficiaries -> {
+		List<AccountBean> accounts = null;
+		if (beneficiaryPredicate.test(beneficiaries)) {
+			accounts = new ArrayList<>();
+			for (BeneficiaryDTO beneficiaryDTO : beneficiaries.getBeneficiaries()) {
+				AccountBean accountBean = new AccountBean();
+				BeanUtils.copyProperties(beneficiaryDTO, accountBean);
+				accountBean.setAccountNumber(!StringUtils.isEmpty(beneficiaryDTO.getAccountNumber())
+						? maskAccount(beneficiaryDTO.getAccountNumber())
+						: beneficiaryDTO.getAccountNumber());
+				accounts.add(accountBean);
+			}
+		}
+		return accounts;
+	};
+
+	public static final Function<AccountBean, BeneficiaryDTO> accountBeanToDTOMapper = accountBean -> {
+		BeneficiaryDTO beneficiaryDTO = new BeneficiaryDTO();
+		BeanUtils.copyProperties(accountBean, beneficiaryDTO);
+		return beneficiaryDTO;
+	};
+
+	public static String maskAccount(String accountnumber) {
+		int maskLength = 6;
+		StringBuilder maskString = new StringBuilder(maskLength);
+		for (int i = 0; i < maskLength; i++) {
+			maskString.append("X");
+		}
+		return accountnumber.substring(0, 4) + maskString.toString() + accountnumber.substring(4 + maskLength);
+	}
+
+	public static boolean checkForExistingBeneficiary(List<BeneficiaryDTO> beneficiaries,
+			BeneficiaryDTO newBeneficiaryDTO) {
+		if (nonNull(beneficiaries)) {
+			Optional<BeneficiaryDTO> existingBeneficiaryOptional = beneficiaries.stream().filter(Objects::nonNull)
+					.filter(beneficiary -> !StringUtils.isEmpty(beneficiary.getAccountNumber())
+							&& !StringUtils.isEmpty(beneficiary.getBranchCode())
+							&& beneficiary.getAccountNumber().equals(newBeneficiaryDTO.getAccountNumber())
+							&& beneficiary.getBranchCode().equals(newBeneficiaryDTO.getBranchCode()))
+					.findFirst();
+			if (existingBeneficiaryOptional.isPresent()) {
+				return true;
+			}
+		}
+		return false;
+	}
+}

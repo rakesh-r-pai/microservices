@@ -1,0 +1,7 @@
+package com.banking.service.authorizationserver;
+
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+public class AuthSecurityConfig extends WebSecurityConfigurerAdapter {
+
+}

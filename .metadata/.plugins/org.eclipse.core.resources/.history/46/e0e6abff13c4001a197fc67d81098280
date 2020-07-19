@@ -1,0 +1,54 @@
+package com.banking.external.externalaccountmanagementservice.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.banking.external.externalaccountmanagementservice.dao.ExternalAccountRepository;
+import com.banking.external.externalaccountmanagementservice.dao.entity.BeneficiaryAccount;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest
+public class ExternalAccountServiceTest {
+
+	@InjectMocks
+	private ExternalAccountService service;
+	
+	@Mock
+	private ExternalAccountRepository repository;
+	
+	@BeforeEach
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
+	}
+	
+	@Test
+	public void testFetchBeneficiaries() {
+		List<BeneficiaryAccount> beneficiaries = populateBeneficiaries();
+		Mockito.when(repository.findAll()).thenReturn(beneficiaries);
+		service.fetchBeneficiaries();
+	}
+
+	private List<BeneficiaryAccount> populateBeneficiaries() {
+		List<BeneficiaryAccount> beneficiaries = new ArrayList<>();
+		BeneficiaryAccount beneficiaryAccount = new BeneficiaryAccount();
+		beneficiaryAccount.setAccountNumber("2020101020");
+		beneficiaryAccount.setBankName("RST Bank");
+		beneficiaryAccount.setBeneficiaryName("Sommerset");
+		beneficiaryAccount.setBeneficiaryNickName("Sunny");
+		beneficiaryAccount.setBranchCode("RST01");
+		beneficiaryAccount.setId(1L);
+		beneficiaries.add(beneficiaryAccount);
+		return beneficiaries;
+	}
+	
+}

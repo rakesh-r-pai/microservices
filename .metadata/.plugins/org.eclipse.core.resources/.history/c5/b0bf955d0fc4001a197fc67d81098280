@@ -1,0 +1,18 @@
+package com.banking.external.externalaccountmanagementservice.controller.helper;
+
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.banking.external.externalaccountmanagementservice.service.helper.ExternalAccountServiceHelper;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest
+public class ExternalAccountServiceHelperTest {
+
+	@InjectMocks
+	private ExternalAccountServiceHelper externalAccountServiceHelper;
+	
+	
+}

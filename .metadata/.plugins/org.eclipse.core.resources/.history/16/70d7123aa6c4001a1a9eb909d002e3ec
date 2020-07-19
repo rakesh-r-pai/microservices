@@ -1,0 +1,5 @@
+package com.banking.service.customeraccountmanagementservice.controller;
+
+public class CustomerAccountsControllerTest {
+
+}

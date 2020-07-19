@@ -1,0 +1,28 @@
+package com.banking.internal.internalaccountmanagementservice.controller.helper;
+
+import org.springframework.util.StringUtils;
+
+import com.banking.internal.internalaccountmanagementservice.model.AccountBean;
+import com.banking.internal.internalaccountmanagementservice.service.dto.InternalAccountServiceResponseDTO;
+
+public class InternalAccountControllerHelper {
+
+	public static AccountBean convertDTOToModel(InternalAccountServiceResponseDTO internalAccountServiceResponseDTO) {
+		AccountBean accountBean = new AccountBean();
+		accountBean.setBankName(internalAccountServiceResponseDTO.getBankName());
+		accountBean.setAccountNumber(!StringUtils.isEmpty(internalAccountServiceResponseDTO.getAccountNumber())
+				? maskAccount(internalAccountServiceResponseDTO.getAccountNumber())
+				: internalAccountServiceResponseDTO.getAccountNumber());
+		accountBean.setAccountBalance(internalAccountServiceResponseDTO.getAccountBalance());
+		return accountBean;
+	}
+
+	public static String maskAccount(String accountnumber) {
+		int maskLength = 6;
+		StringBuilder maskString = new StringBuilder(maskLength);
+		for (int i = 0; i < maskLength; i++) {
+			maskString.append("X");
+		}
+		return accountnumber.substring(0, 4) + maskString.toString();
+	}
+}

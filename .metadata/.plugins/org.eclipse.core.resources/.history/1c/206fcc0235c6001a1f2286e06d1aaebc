@@ -1,0 +1,20 @@
+spring.application.name=zuul-api-gateway-server
+server.port=8765
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+
+zuul.routes.internal-account-management-service.path=/internal/**
+zuul.routes.internal-account-management-service.service-id=internal-account-management-service
+
+zuul.routes.external-account-management-service.path=/external/**
+zuul.routes.external-account-management-service.service-id=external-account-management-service
+
+zuul.routes.customer-account-management-service.path=/customer/**
+zuul.routes.customer-account-management-service.service-id=customer-account-management-service
+
+logging.level.root=info
+logging.pattern.console=%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n
+logging.file.path=U:/banking_logs
+logging.file.name=${logging.file.path}/zuulserver.log
+logging.pattern.file=%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n

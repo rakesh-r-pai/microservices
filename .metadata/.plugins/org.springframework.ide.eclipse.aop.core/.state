@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="common"/>
+<aop-project name="internal-account-management-service"/>
+<aop-project name="zuul-api-gateway-server"/>
+<aop-project name="eureka-naming-server"/>
+<aop-project name="customer-account-management-service"/>
+<aop-project name="external-account-management-service"/>
+<aop-project name="authorization-server"/>
+</aop-reference-model>

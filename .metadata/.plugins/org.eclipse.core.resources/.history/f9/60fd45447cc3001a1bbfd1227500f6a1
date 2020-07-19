@@ -1,0 +1,27 @@
+package com.banking.external.externalaccountmanagementservice.controller;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.banking.external.externalaccountmanagementservice.service.ExternalAccountService;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest
+public class ExternalAccountControllerTest {
+	
+	@InjectMocks
+	private ExternalAccountController controller;
+	
+	@Mock
+	private ExternalAccountService service;
+	
+	@Test
+	public void testFetchBeneficiaries() {
+		
+	}
+
+}
