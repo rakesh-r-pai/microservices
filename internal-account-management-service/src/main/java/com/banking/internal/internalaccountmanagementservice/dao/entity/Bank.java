@@ -28,7 +28,7 @@ public class Bank {
 	private Account account;
 	
 	public Bank() {
-		
+		//Constructor
 	}
 
 	/**

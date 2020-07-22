@@ -27,7 +27,7 @@ public class Account {
 	private BigDecimal accountBalance;
 	
 	public Account() {
-		
+		//Constructor
 	}
 
 	/**

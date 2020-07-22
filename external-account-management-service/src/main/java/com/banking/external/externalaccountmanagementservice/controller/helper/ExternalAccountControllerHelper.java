@@ -18,6 +18,10 @@ import com.banking.external.externalaccountmanagementservice.service.dto.Benefic
 import com.banking.external.externalaccountmanagementservice.service.dto.BeneficiaryResponseDTO;
 
 public class ExternalAccountControllerHelper {
+	
+	private ExternalAccountControllerHelper() {
+		//Private Constructor
+	}
 
 	private static final Predicate<BeneficiaryResponseDTO> beneficiaryPredicate = beneficiaries -> (nonNull(
 			beneficiaries) && nonNull(beneficiaries.getBeneficiaries()) && !beneficiaries.getBeneficiaries().isEmpty());

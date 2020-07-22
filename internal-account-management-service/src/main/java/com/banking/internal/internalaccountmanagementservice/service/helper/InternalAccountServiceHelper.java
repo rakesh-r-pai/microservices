@@ -13,6 +13,10 @@ import com.banking.internal.internalaccountmanagementservice.service.dto.Interna
  *
  */
 public class InternalAccountServiceHelper {
+	
+	private InternalAccountServiceHelper() {
+		//Private Constructor
+	}
 
 	public static final Function<Bank, InternalAccountServiceResponseDTO> daoToDTOMapper = bank -> {
 		InternalAccountServiceResponseDTO internalAccountServiceResponseDTO = new InternalAccountServiceResponseDTO();

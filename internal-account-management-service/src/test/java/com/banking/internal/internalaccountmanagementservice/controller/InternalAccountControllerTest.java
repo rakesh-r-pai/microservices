@@ -3,6 +3,7 @@ package com.banking.internal.internalaccountmanagementservice.controller;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 
@@ -43,6 +44,18 @@ public class InternalAccountControllerTest {
 		assertNotNull(account);
 		assertEquals(new BigDecimal(5500.00), account.getAccountBalance());
 		assertEquals("2020XXXXXX", account.getAccountNumber());
+		assertEquals("XYC Bank", account.getBankName());
+	}
+	
+	@Test
+	public void testFetchAccountDetails_whenAccountIsEmpty() {
+		InternalAccountServiceResponseDTO internalAccountServiceResponseDTO = populateAccountDetails();
+		internalAccountServiceResponseDTO.setAccountNumber("");
+		Mockito.when(service.fetchAccountDetails()).thenReturn(internalAccountServiceResponseDTO);
+		AccountBean account = controller.fetchAccountDetails();
+		assertNotNull(account);
+		assertEquals(new BigDecimal(5500.00), account.getAccountBalance());
+		assertTrue(account.getAccountNumber().isEmpty());
 		assertEquals("XYC Bank", account.getBankName());
 	}
 

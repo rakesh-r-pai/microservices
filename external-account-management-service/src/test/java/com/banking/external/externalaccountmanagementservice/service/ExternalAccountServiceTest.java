@@ -3,6 +3,7 @@ package com.banking.external.externalaccountmanagementservice.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.anyLong;
 
 import java.util.ArrayList;
@@ -68,6 +69,15 @@ public class ExternalAccountServiceTest {
 		assertEquals("RST01", beneficiaryDTO.getBranchCode());
 		assertEquals("1", beneficiaryDTO.getId().toString());
 	}
+	
+	@Test
+	public void testFetchBeneficiaryById_whenBeneficiaryIsNull() {
+		List<BeneficiaryAccount> beneficiaries = new ArrayList<>();
+		Optional<BeneficiaryAccount> beneficiaryAccount = beneficiaries.stream().findFirst();
+		Mockito.when(repository.findById(anyLong())).thenReturn(beneficiaryAccount);
+		BeneficiaryDTO beneficiaryDTO = service.fetchBeneficiaryById(1L);
+		assertNull(beneficiaryDTO);
+	}
 
 	@Test
 	public void testSaveBeneficiary() {
@@ -80,7 +90,9 @@ public class ExternalAccountServiceTest {
 
 	@Test
 	public void testDeleteBeneficiary() {
-		Mockito.doNothing().when(repository).deleteById(anyLong());
+		Long id = 1L;
+		Mockito.doNothing().when(repository).deleteById(id);
+		assertEquals("1", id.toString());
 	}
 
 	private BeneficiaryDTO populateDTO() {

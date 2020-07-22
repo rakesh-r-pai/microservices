@@ -22,7 +22,7 @@ public class BeneficiaryAccount {
 	private String accountNumber;
 	
 	public BeneficiaryAccount() {
-		
+		//Constructor
 	}
 
 	/**

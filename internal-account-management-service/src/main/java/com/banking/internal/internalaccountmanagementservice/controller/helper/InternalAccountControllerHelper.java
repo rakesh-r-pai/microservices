@@ -9,6 +9,10 @@ import com.banking.internal.internalaccountmanagementservice.model.AccountBean;
 import com.banking.internal.internalaccountmanagementservice.service.dto.InternalAccountServiceResponseDTO;
 
 public class InternalAccountControllerHelper {
+	
+	private InternalAccountControllerHelper() {
+		//Private Constructor
+	}
 
 	public static final Function<InternalAccountServiceResponseDTO, AccountBean> dtoToModelMapper = internalAccountServiceResponseDTO -> {
 		AccountBean accountBean = new AccountBean();

@@ -20,8 +20,7 @@ public class ExternalAccountService {
 
 	public BeneficiaryResponseDTO fetchBeneficiaries() {
 		List<BeneficiaryAccount> beneficiaries = repository.findAll();
-		BeneficiaryResponseDTO responseDTO = ExternalAccountServiceHelper.processResponse.apply(beneficiaries);
-		return responseDTO;
+		return ExternalAccountServiceHelper.processResponse.apply(beneficiaries);
 	}
 
 	public BeneficiaryDTO fetchBeneficiaryById(Long id) {

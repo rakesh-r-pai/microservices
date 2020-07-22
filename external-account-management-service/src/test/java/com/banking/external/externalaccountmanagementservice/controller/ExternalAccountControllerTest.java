@@ -3,6 +3,7 @@ package com.banking.external.externalaccountmanagementservice.controller;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyLong;
 
@@ -51,6 +52,30 @@ public class ExternalAccountControllerTest {
 		assertFalse(accounts.isEmpty());
 		assertNotNull(accounts.get(0));
 		assertEquals("2020XXXXXX", accounts.get(0).getAccountNumber());
+		assertEquals("RST Bank", accounts.get(0).getBankName());
+		assertEquals("Sommerset", accounts.get(0).getBeneficiaryName());
+		assertEquals("Sunny", accounts.get(0).getBeneficiaryNickName());
+		assertEquals("RST01", accounts.get(0).getBranchCode());
+		assertEquals("1", accounts.get(0).getId().toString());
+	}
+	
+	@Test
+	public void testFetchBeneficiaries_whenBeneficiaryIsNull() {
+		Mockito.when(service.fetchBeneficiaries()).thenReturn(null);
+		List<AccountBean> accounts = controller.fetchBeneficiaries();
+		assertNull(accounts);
+	}
+	
+	@Test
+	public void testFetchBeneficiaries_whenAccountisEmpty() {
+		BeneficiaryResponseDTO responseDTO = populateResponseDTO();
+		responseDTO.getBeneficiaries().get(0).setAccountNumber("");
+		Mockito.when(service.fetchBeneficiaries()).thenReturn(responseDTO);
+		List<AccountBean> accounts = controller.fetchBeneficiaries();
+		assertNotNull(accounts);
+		assertFalse(accounts.isEmpty());
+		assertNotNull(accounts.get(0));
+		assertTrue(accounts.get(0).getAccountNumber().isEmpty());
 		assertEquals("RST Bank", accounts.get(0).getBankName());
 		assertEquals("Sommerset", accounts.get(0).getBeneficiaryName());
 		assertEquals("Sunny", accounts.get(0).getBeneficiaryNickName());

@@ -13,6 +13,10 @@ import com.banking.external.externalaccountmanagementservice.service.dto.Benefic
 import com.banking.external.externalaccountmanagementservice.service.dto.BeneficiaryResponseDTO;
 
 public class ExternalAccountServiceHelper {
+	
+	private ExternalAccountServiceHelper() {
+		//Private Constructor
+	}
 
 	public static final Function<List<BeneficiaryAccount>, BeneficiaryResponseDTO> processResponse = beneficiaries -> {
 		BeneficiaryResponseDTO beneficiaryResponseDTO = new BeneficiaryResponseDTO();

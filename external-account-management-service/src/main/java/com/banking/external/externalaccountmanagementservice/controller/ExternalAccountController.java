@@ -41,8 +41,7 @@ public class ExternalAccountController {
 	@HystrixCommand(fallbackMethod="fetchDefault")
 	public List<AccountBean> fetchBeneficiaries() {
 		BeneficiaryResponseDTO beneficiaries = externalAccountService.fetchBeneficiaries();
-		List<AccountBean> response = ExternalAccountControllerHelper.dtoToModelMapper.apply(beneficiaries);
-		return response;
+		return ExternalAccountControllerHelper.dtoToModelMapper.apply(beneficiaries);
 	}
 
 	@PostMapping("/beneficiaries")
@@ -52,10 +51,10 @@ public class ExternalAccountController {
 		boolean beneficiaryExists = ExternalAccountControllerHelper
 				.checkForExistingBeneficiary(beneficiaryResponseDTO.getBeneficiaries(), newBeneficiaryDTO);
 		if (beneficiaryExists) {
-			return new ResponseEntity<HttpStatus>(HttpStatus.CONFLICT);
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 		externalAccountService.saveBeneficiary(newBeneficiaryDTO);
-		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@PutMapping("/beneficiaries/{id}")
@@ -65,9 +64,9 @@ public class ExternalAccountController {
 			existingDTO.setBeneficiaryName(accountBean.getBeneficiaryName());
 			existingDTO.setBeneficiaryNickName(accountBean.getBeneficiaryNickName());
 			externalAccountService.saveBeneficiary(existingDTO);
-			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/beneficiaries/{id}")
@@ -75,14 +74,13 @@ public class ExternalAccountController {
 		try {
 			externalAccountService.deleteBeneficiary(id);
 		} catch (EmptyResultDataAccessException ex) {
-			return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	public List<AccountBean> fetchDefault() {
-		List<AccountBean> response = new ArrayList<>();
-		return response;
+		return new ArrayList<>();
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
